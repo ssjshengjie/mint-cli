@@ -41,9 +41,6 @@ export const createProjectAction = async () => {
     const templateDir = path.resolve(templateRoot, templateName);
     renderTemplate(templateDir, root);
   }
-  if (needsTypeScript) {
-    render("config/ts");
-  }
   if (needsJsx) {
     render("config/jsx");
   }
@@ -53,4 +50,11 @@ export const createProjectAction = async () => {
   if (needsPinia) {
     render("config/pinia");
   }
+  if (needsTypeScript) {
+    render("config/ts");
+    render("tsconfig/base");
+  }
+  const codeTemplate =
+    (needsTypeScript ? "ts-" : "") + (needsRouter ? "router" : "default");
+  render(`code/${codeTemplate}`);
 };

@@ -7200,9 +7200,6 @@ var createProjectAction = async () => {
     const templateDir = import_path2.default.resolve(templateRoot, templateName);
     renderTemplate(templateDir, root);
   }
-  if (needsTypeScript) {
-    render("config/ts");
-  }
   if (needsJsx) {
     render("config/jsx");
   }
@@ -7212,6 +7209,12 @@ var createProjectAction = async () => {
   if (needsPinia) {
     render("config/pinia");
   }
+  if (needsTypeScript) {
+    render("config/ts");
+    render("tsconfig/base");
+  }
+  const codeTemplate = (needsTypeScript ? "ts-" : "") + (needsRouter ? "router" : "default");
+  render(`code/${codeTemplate}`);
 };
 
 // lib/core/create.ts
