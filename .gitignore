@@ -10,3 +10,4 @@ template/*/node_modules
 *.suo
 *.ntvs*
 *.njsproj
+mt.cjs

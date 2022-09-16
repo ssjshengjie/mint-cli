@@ -13,7 +13,7 @@ import sortDependencies from "./sortDependencies";
  * @param {string} src source filename to copy
  * @param {string} dest destination filename of the copy operation
  */
-export function renderTemplate(src, dest) {
+export const renderTemplate = (src, dest) => {
   const stats = fs.statSync(src);
 
   if (stats.isDirectory()) {
@@ -47,4 +47,4 @@ export function renderTemplate(src, dest) {
   }
 
   fs.copyFileSync(src, dest);
-}
+};

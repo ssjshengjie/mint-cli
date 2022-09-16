@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "vite": "^3.0.9",
+    "@vitejs/plugin-vue": "^3.1.0"
+  },
+  "dependencies": {
+    "vue": "^3.2.38"
+  }
+}
