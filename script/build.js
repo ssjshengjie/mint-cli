@@ -3,7 +3,7 @@ import { resolve } from "path";
 build({
   entryPoints: [resolve("index.ts")],
   bundle: true,
-  outfile: "dist/mt.cjs",
+  outfile: "mt.cjs",
   platform: "node",
 })
   .then(() => {

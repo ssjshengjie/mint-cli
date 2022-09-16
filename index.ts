@@ -11,7 +11,6 @@ helpOptions();
 // create project
 createCommand();
 program.parse(process.argv);
-
 const options = program.opts();
 if (options.dest) console.log(options.dest);
 if (options.frame) console.log(options.frame);

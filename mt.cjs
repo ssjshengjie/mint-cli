@@ -21,9 +21,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 
-// node_modules/.pnpm/commander@9.4.0/node_modules/commander/lib/error.js
+// node_modules/commander/lib/error.js
 var require_error = __commonJS({
-  "node_modules/.pnpm/commander@9.4.0/node_modules/commander/lib/error.js"(exports) {
+  "node_modules/commander/lib/error.js"(exports) {
     var CommanderError2 = class extends Error {
       constructor(exitCode, code, message) {
         super(message);
@@ -46,9 +46,9 @@ var require_error = __commonJS({
   }
 });
 
-// node_modules/.pnpm/commander@9.4.0/node_modules/commander/lib/argument.js
+// node_modules/commander/lib/argument.js
 var require_argument = __commonJS({
-  "node_modules/.pnpm/commander@9.4.0/node_modules/commander/lib/argument.js"(exports) {
+  "node_modules/commander/lib/argument.js"(exports) {
     var { InvalidArgumentError: InvalidArgumentError2 } = require_error();
     var Argument2 = class {
       constructor(name, description) {
@@ -126,9 +126,9 @@ var require_argument = __commonJS({
   }
 });
 
-// node_modules/.pnpm/commander@9.4.0/node_modules/commander/lib/help.js
+// node_modules/commander/lib/help.js
 var require_help = __commonJS({
-  "node_modules/.pnpm/commander@9.4.0/node_modules/commander/lib/help.js"(exports) {
+  "node_modules/commander/lib/help.js"(exports) {
     var { humanReadableArgName } = require_argument();
     var Help2 = class {
       constructor() {
@@ -344,9 +344,9 @@ var require_help = __commonJS({
   }
 });
 
-// node_modules/.pnpm/commander@9.4.0/node_modules/commander/lib/option.js
+// node_modules/commander/lib/option.js
 var require_option = __commonJS({
-  "node_modules/.pnpm/commander@9.4.0/node_modules/commander/lib/option.js"(exports) {
+  "node_modules/commander/lib/option.js"(exports) {
     var { InvalidArgumentError: InvalidArgumentError2 } = require_error();
     var Option2 = class {
       constructor(flags, description) {
@@ -492,9 +492,9 @@ var require_option = __commonJS({
   }
 });
 
-// node_modules/.pnpm/commander@9.4.0/node_modules/commander/lib/suggestSimilar.js
+// node_modules/commander/lib/suggestSimilar.js
 var require_suggestSimilar = __commonJS({
-  "node_modules/.pnpm/commander@9.4.0/node_modules/commander/lib/suggestSimilar.js"(exports) {
+  "node_modules/commander/lib/suggestSimilar.js"(exports) {
     var maxDistance = 3;
     function editDistance(a, b) {
       if (Math.abs(a.length - b.length) > maxDistance)
@@ -571,13 +571,13 @@ var require_suggestSimilar = __commonJS({
   }
 });
 
-// node_modules/.pnpm/commander@9.4.0/node_modules/commander/lib/command.js
+// node_modules/commander/lib/command.js
 var require_command = __commonJS({
-  "node_modules/.pnpm/commander@9.4.0/node_modules/commander/lib/command.js"(exports) {
+  "node_modules/commander/lib/command.js"(exports) {
     var EventEmitter = require("events").EventEmitter;
     var childProcess = require("child_process");
-    var path = require("path");
-    var fs = require("fs");
+    var path3 = require("path");
+    var fs3 = require("fs");
     var process2 = require("process");
     var { Argument: Argument2, humanReadableArgName } = require_argument();
     var { CommanderError: CommanderError2 } = require_error();
@@ -1008,12 +1008,12 @@ Expecting one of '${allowedValues.join("', '")}'`);
         let launchWithNode = false;
         const sourceExt = [".js", ".ts", ".tsx", ".mjs", ".cjs"];
         function findFile(baseDir, baseName) {
-          const localBin = path.resolve(baseDir, baseName);
-          if (fs.existsSync(localBin))
+          const localBin = path3.resolve(baseDir, baseName);
+          if (fs3.existsSync(localBin))
             return localBin;
-          if (sourceExt.includes(path.extname(baseName)))
+          if (sourceExt.includes(path3.extname(baseName)))
             return void 0;
-          const foundExt = sourceExt.find((ext) => fs.existsSync(`${localBin}${ext}`));
+          const foundExt = sourceExt.find((ext) => fs3.existsSync(`${localBin}${ext}`));
           if (foundExt)
             return `${localBin}${foundExt}`;
           return void 0;
@@ -1025,23 +1025,23 @@ Expecting one of '${allowedValues.join("', '")}'`);
         if (this._scriptPath) {
           let resolvedScriptPath;
           try {
-            resolvedScriptPath = fs.realpathSync(this._scriptPath);
+            resolvedScriptPath = fs3.realpathSync(this._scriptPath);
           } catch (err) {
             resolvedScriptPath = this._scriptPath;
           }
-          executableDir = path.resolve(path.dirname(resolvedScriptPath), executableDir);
+          executableDir = path3.resolve(path3.dirname(resolvedScriptPath), executableDir);
         }
         if (executableDir) {
           let localFile = findFile(executableDir, executableFile);
           if (!localFile && !subcommand._executableFile && this._scriptPath) {
-            const legacyName = path.basename(this._scriptPath, path.extname(this._scriptPath));
+            const legacyName = path3.basename(this._scriptPath, path3.extname(this._scriptPath));
             if (legacyName !== this._name) {
               localFile = findFile(executableDir, `${legacyName}-${subcommand._name}`);
             }
           }
           executableFile = localFile || executableFile;
         }
-        launchWithNode = sourceExt.includes(path.extname(executableFile));
+        launchWithNode = sourceExt.includes(path3.extname(executableFile));
         let proc;
         if (process2.platform !== "win32") {
           if (launchWithNode) {
@@ -1613,13 +1613,13 @@ Expecting one of '${allowedValues.join("', '")}'`);
         return this;
       }
       nameFromFilename(filename) {
-        this._name = path.basename(filename, path.extname(filename));
+        this._name = path3.basename(filename, path3.extname(filename));
         return this;
       }
-      executableDir(path2) {
-        if (path2 === void 0)
+      executableDir(path4) {
+        if (path4 === void 0)
           return this._executableDir;
-        this._executableDir = path2;
+        this._executableDir = path4;
         return this;
       }
       helpInformation(contextOptions) {
@@ -1752,9 +1752,9 @@ Expecting one of '${allowedValues.join("', '")}'`);
   }
 });
 
-// node_modules/.pnpm/commander@9.4.0/node_modules/commander/index.js
+// node_modules/commander/index.js
 var require_commander = __commonJS({
-  "node_modules/.pnpm/commander@9.4.0/node_modules/commander/index.js"(exports, module2) {
+  "node_modules/commander/index.js"(exports, module2) {
     var { Argument: Argument2 } = require_argument();
     var { Command: Command2 } = require_command();
     var { CommanderError: CommanderError2, InvalidArgumentError: InvalidArgumentError2 } = require_error();
@@ -1772,9 +1772,9 @@ var require_commander = __commonJS({
   }
 });
 
-// node_modules/.pnpm/minimist@1.2.6/node_modules/minimist/index.js
+// node_modules/minimist/index.js
 var require_minimist = __commonJS({
-  "node_modules/.pnpm/minimist@1.2.6/node_modules/minimist/index.js"(exports, module2) {
+  "node_modules/minimist/index.js"(exports, module2) {
     module2.exports = function(args, opts) {
       if (!opts)
         opts = {};
@@ -1979,9 +1979,9 @@ var require_minimist = __commonJS({
   }
 });
 
-// node_modules/.pnpm/kleur@3.0.3/node_modules/kleur/index.js
+// node_modules/kleur/index.js
 var require_kleur = __commonJS({
-  "node_modules/.pnpm/kleur@3.0.3/node_modules/kleur/index.js"(exports, module2) {
+  "node_modules/kleur/index.js"(exports, module2) {
     "use strict";
     var { FORCE_COLOR, NODE_DISABLE_COLORS, TERM } = process.env;
     var $ = {
@@ -2073,9 +2073,9 @@ var require_kleur = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/action.js
+// node_modules/prompts/dist/util/action.js
 var require_action = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/action.js"(exports, module2) {
+  "node_modules/prompts/dist/util/action.js"(exports, module2) {
     "use strict";
     module2.exports = (key, isSelect) => {
       if (key.meta && key.name !== "escape")
@@ -2133,9 +2133,9 @@ var require_action = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/strip.js
+// node_modules/prompts/dist/util/strip.js
 var require_strip = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/strip.js"(exports, module2) {
+  "node_modules/prompts/dist/util/strip.js"(exports, module2) {
     "use strict";
     module2.exports = (str) => {
       const pattern = ["[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)", "(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PRZcf-ntqry=><~]))"].join("|");
@@ -2145,9 +2145,9 @@ var require_strip = __commonJS({
   }
 });
 
-// node_modules/.pnpm/sisteransi@1.0.5/node_modules/sisteransi/src/index.js
+// node_modules/sisteransi/src/index.js
 var require_src = __commonJS({
-  "node_modules/.pnpm/sisteransi@1.0.5/node_modules/sisteransi/src/index.js"(exports, module2) {
+  "node_modules/sisteransi/src/index.js"(exports, module2) {
     "use strict";
     var ESC = "\x1B";
     var CSI = `${ESC}[`;
@@ -2206,9 +2206,9 @@ var require_src = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/clear.js
+// node_modules/prompts/dist/util/clear.js
 var require_clear = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/clear.js"(exports, module2) {
+  "node_modules/prompts/dist/util/clear.js"(exports, module2) {
     "use strict";
     function _createForOfIteratorHelper(o, allowArrayLike) {
       var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
@@ -2295,9 +2295,9 @@ var require_clear = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/figures.js
+// node_modules/prompts/dist/util/figures.js
 var require_figures = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/figures.js"(exports, module2) {
+  "node_modules/prompts/dist/util/figures.js"(exports, module2) {
     "use strict";
     var main = {
       arrowUp: "\u2191",
@@ -2332,9 +2332,9 @@ var require_figures = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/style.js
+// node_modules/prompts/dist/util/style.js
 var require_style = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/style.js"(exports, module2) {
+  "node_modules/prompts/dist/util/style.js"(exports, module2) {
     "use strict";
     var c = require_kleur();
     var figures = require_figures();
@@ -2377,9 +2377,9 @@ var require_style = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/lines.js
+// node_modules/prompts/dist/util/lines.js
 var require_lines = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/lines.js"(exports, module2) {
+  "node_modules/prompts/dist/util/lines.js"(exports, module2) {
     "use strict";
     var strip = require_strip();
     module2.exports = function(msg, perLine) {
@@ -2391,9 +2391,9 @@ var require_lines = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/wrap.js
+// node_modules/prompts/dist/util/wrap.js
 var require_wrap = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/wrap.js"(exports, module2) {
+  "node_modules/prompts/dist/util/wrap.js"(exports, module2) {
     "use strict";
     module2.exports = (msg, opts = {}) => {
       const tab = Number.isSafeInteger(parseInt(opts.margin)) ? new Array(parseInt(opts.margin)).fill(" ").join("") : opts.margin || "";
@@ -2409,9 +2409,9 @@ var require_wrap = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/entriesToDisplay.js
+// node_modules/prompts/dist/util/entriesToDisplay.js
 var require_entriesToDisplay = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/entriesToDisplay.js"(exports, module2) {
+  "node_modules/prompts/dist/util/entriesToDisplay.js"(exports, module2) {
     "use strict";
     module2.exports = (cursor, total, maxVisible) => {
       maxVisible = maxVisible || total;
@@ -2427,9 +2427,9 @@ var require_entriesToDisplay = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/index.js
+// node_modules/prompts/dist/util/index.js
 var require_util = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/index.js"(exports, module2) {
+  "node_modules/prompts/dist/util/index.js"(exports, module2) {
     "use strict";
     module2.exports = {
       action: require_action(),
@@ -2444,9 +2444,9 @@ var require_util = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/prompt.js
+// node_modules/prompts/dist/elements/prompt.js
 var require_prompt = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/prompt.js"(exports, module2) {
+  "node_modules/prompts/dist/elements/prompt.js"(exports, module2) {
     "use strict";
     var readline = require("readline");
     var _require = require_util();
@@ -2512,9 +2512,9 @@ var require_prompt = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/text.js
+// node_modules/prompts/dist/elements/text.js
 var require_text = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/text.js"(exports, module2) {
+  "node_modules/prompts/dist/elements/text.js"(exports, module2) {
     "use strict";
     function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       try {
@@ -2736,9 +2736,9 @@ ${i ? " " : figures.pointerSmall} ${color.red().italic(l)}`, ``);
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/select.js
+// node_modules/prompts/dist/elements/select.js
 var require_select = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/select.js"(exports, module2) {
+  "node_modules/prompts/dist/elements/select.js"(exports, module2) {
     "use strict";
     var color = require_kleur();
     var Prompt = require_prompt();
@@ -2890,9 +2890,9 @@ var require_select = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/toggle.js
+// node_modules/prompts/dist/elements/toggle.js
 var require_toggle = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/toggle.js"(exports, module2) {
+  "node_modules/prompts/dist/elements/toggle.js"(exports, module2) {
     "use strict";
     var color = require_kleur();
     var Prompt = require_prompt();
@@ -2994,9 +2994,9 @@ var require_toggle = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/datepart.js
+// node_modules/prompts/dist/dateparts/datepart.js
 var require_datepart = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/datepart.js"(exports, module2) {
+  "node_modules/prompts/dist/dateparts/datepart.js"(exports, module2) {
     "use strict";
     var DatePart = class {
       constructor({
@@ -3033,9 +3033,9 @@ var require_datepart = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/meridiem.js
+// node_modules/prompts/dist/dateparts/meridiem.js
 var require_meridiem = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/meridiem.js"(exports, module2) {
+  "node_modules/prompts/dist/dateparts/meridiem.js"(exports, module2) {
     "use strict";
     var DatePart = require_datepart();
     var Meridiem = class extends DatePart {
@@ -3057,9 +3057,9 @@ var require_meridiem = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/day.js
+// node_modules/prompts/dist/dateparts/day.js
 var require_day = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/day.js"(exports, module2) {
+  "node_modules/prompts/dist/dateparts/day.js"(exports, module2) {
     "use strict";
     var DatePart = require_datepart();
     var pos = (n) => {
@@ -3089,9 +3089,9 @@ var require_day = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/hours.js
+// node_modules/prompts/dist/dateparts/hours.js
 var require_hours = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/hours.js"(exports, module2) {
+  "node_modules/prompts/dist/dateparts/hours.js"(exports, module2) {
     "use strict";
     var DatePart = require_datepart();
     var Hours = class extends DatePart {
@@ -3118,9 +3118,9 @@ var require_hours = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/milliseconds.js
+// node_modules/prompts/dist/dateparts/milliseconds.js
 var require_milliseconds = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/milliseconds.js"(exports, module2) {
+  "node_modules/prompts/dist/dateparts/milliseconds.js"(exports, module2) {
     "use strict";
     var DatePart = require_datepart();
     var Milliseconds = class extends DatePart {
@@ -3144,9 +3144,9 @@ var require_milliseconds = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/minutes.js
+// node_modules/prompts/dist/dateparts/minutes.js
 var require_minutes = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/minutes.js"(exports, module2) {
+  "node_modules/prompts/dist/dateparts/minutes.js"(exports, module2) {
     "use strict";
     var DatePart = require_datepart();
     var Minutes = class extends DatePart {
@@ -3171,9 +3171,9 @@ var require_minutes = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/month.js
+// node_modules/prompts/dist/dateparts/month.js
 var require_month = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/month.js"(exports, module2) {
+  "node_modules/prompts/dist/dateparts/month.js"(exports, module2) {
     "use strict";
     var DatePart = require_datepart();
     var Month = class extends DatePart {
@@ -3200,9 +3200,9 @@ var require_month = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/seconds.js
+// node_modules/prompts/dist/dateparts/seconds.js
 var require_seconds = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/seconds.js"(exports, module2) {
+  "node_modules/prompts/dist/dateparts/seconds.js"(exports, module2) {
     "use strict";
     var DatePart = require_datepart();
     var Seconds = class extends DatePart {
@@ -3227,9 +3227,9 @@ var require_seconds = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/year.js
+// node_modules/prompts/dist/dateparts/year.js
 var require_year = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/year.js"(exports, module2) {
+  "node_modules/prompts/dist/dateparts/year.js"(exports, module2) {
     "use strict";
     var DatePart = require_datepart();
     var Year = class extends DatePart {
@@ -3254,9 +3254,9 @@ var require_year = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/index.js
+// node_modules/prompts/dist/dateparts/index.js
 var require_dateparts = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/dateparts/index.js"(exports, module2) {
+  "node_modules/prompts/dist/dateparts/index.js"(exports, module2) {
     "use strict";
     module2.exports = {
       DatePart: require_datepart(),
@@ -3272,9 +3272,9 @@ var require_dateparts = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/date.js
+// node_modules/prompts/dist/elements/date.js
 var require_date = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/date.js"(exports, module2) {
+  "node_modules/prompts/dist/elements/date.js"(exports, module2) {
     "use strict";
     function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       try {
@@ -3498,9 +3498,9 @@ ${i ? ` ` : figures.pointerSmall} ${color.red().italic(l)}`, ``);
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/number.js
+// node_modules/prompts/dist/elements/number.js
 var require_number = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/number.js"(exports, module2) {
+  "node_modules/prompts/dist/elements/number.js"(exports, module2) {
     "use strict";
     function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       try {
@@ -3723,9 +3723,9 @@ ${i ? ` ` : figures.pointerSmall} ${color.red().italic(l)}`, ``);
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/multiselect.js
+// node_modules/prompts/dist/elements/multiselect.js
 var require_multiselect = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/multiselect.js"(exports, module2) {
+  "node_modules/prompts/dist/elements/multiselect.js"(exports, module2) {
     "use strict";
     var color = require_kleur();
     var _require = require_src();
@@ -3956,9 +3956,9 @@ Instructions:
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/autocomplete.js
+// node_modules/prompts/dist/elements/autocomplete.js
 var require_autocomplete = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/autocomplete.js"(exports, module2) {
+  "node_modules/prompts/dist/elements/autocomplete.js"(exports, module2) {
     "use strict";
     function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
       try {
@@ -4224,9 +4224,9 @@ var require_autocomplete = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/autocompleteMultiselect.js
+// node_modules/prompts/dist/elements/autocompleteMultiselect.js
 var require_autocompleteMultiselect = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/autocompleteMultiselect.js"(exports, module2) {
+  "node_modules/prompts/dist/elements/autocompleteMultiselect.js"(exports, module2) {
     "use strict";
     var color = require_kleur();
     var _require = require_src();
@@ -4388,9 +4388,9 @@ Filtered results for: ${this.inputValue ? this.inputValue : color.gray("Enter so
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/confirm.js
+// node_modules/prompts/dist/elements/confirm.js
 var require_confirm = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/confirm.js"(exports, module2) {
+  "node_modules/prompts/dist/elements/confirm.js"(exports, module2) {
     "use strict";
     var color = require_kleur();
     var Prompt = require_prompt();
@@ -4463,9 +4463,9 @@ var require_confirm = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/index.js
+// node_modules/prompts/dist/elements/index.js
 var require_elements = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/index.js"(exports, module2) {
+  "node_modules/prompts/dist/elements/index.js"(exports, module2) {
     "use strict";
     module2.exports = {
       TextPrompt: require_text(),
@@ -4481,9 +4481,9 @@ var require_elements = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/prompts.js
+// node_modules/prompts/dist/prompts.js
 var require_prompts = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/prompts.js"(exports) {
+  "node_modules/prompts/dist/prompts.js"(exports) {
     "use strict";
     var $ = exports;
     var el = require_elements();
@@ -4545,9 +4545,9 @@ var require_prompts = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/index.js
+// node_modules/prompts/dist/index.js
 var require_dist = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/index.js"(exports, module2) {
+  "node_modules/prompts/dist/index.js"(exports, module2) {
     "use strict";
     function ownKeys(object, enumerableOnly) {
       var keys = Object.keys(object);
@@ -4779,9 +4779,9 @@ var require_dist = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/action.js
+// node_modules/prompts/lib/util/action.js
 var require_action2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/action.js"(exports, module2) {
+  "node_modules/prompts/lib/util/action.js"(exports, module2) {
     "use strict";
     module2.exports = (key, isSelect) => {
       if (key.meta && key.name !== "escape")
@@ -4839,9 +4839,9 @@ var require_action2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/strip.js
+// node_modules/prompts/lib/util/strip.js
 var require_strip2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/strip.js"(exports, module2) {
+  "node_modules/prompts/lib/util/strip.js"(exports, module2) {
     "use strict";
     module2.exports = (str) => {
       const pattern = [
@@ -4854,9 +4854,9 @@ var require_strip2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/clear.js
+// node_modules/prompts/lib/util/clear.js
 var require_clear2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/clear.js"(exports, module2) {
+  "node_modules/prompts/lib/util/clear.js"(exports, module2) {
     "use strict";
     var strip = require_strip2();
     var { erase, cursor } = require_src();
@@ -4874,9 +4874,9 @@ var require_clear2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/figures.js
+// node_modules/prompts/lib/util/figures.js
 var require_figures2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/figures.js"(exports, module2) {
+  "node_modules/prompts/lib/util/figures.js"(exports, module2) {
     "use strict";
     var main = {
       arrowUp: "\u2191",
@@ -4911,9 +4911,9 @@ var require_figures2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/style.js
+// node_modules/prompts/lib/util/style.js
 var require_style2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/style.js"(exports, module2) {
+  "node_modules/prompts/lib/util/style.js"(exports, module2) {
     "use strict";
     var c = require_kleur();
     var figures = require_figures2();
@@ -4944,9 +4944,9 @@ var require_style2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/lines.js
+// node_modules/prompts/lib/util/lines.js
 var require_lines2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/lines.js"(exports, module2) {
+  "node_modules/prompts/lib/util/lines.js"(exports, module2) {
     "use strict";
     var strip = require_strip2();
     module2.exports = function(msg, perLine) {
@@ -4958,9 +4958,9 @@ var require_lines2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/wrap.js
+// node_modules/prompts/lib/util/wrap.js
 var require_wrap2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/wrap.js"(exports, module2) {
+  "node_modules/prompts/lib/util/wrap.js"(exports, module2) {
     "use strict";
     module2.exports = (msg, opts = {}) => {
       const tab = Number.isSafeInteger(parseInt(opts.margin)) ? new Array(parseInt(opts.margin)).fill(" ").join("") : opts.margin || "";
@@ -4976,9 +4976,9 @@ var require_wrap2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/entriesToDisplay.js
+// node_modules/prompts/lib/util/entriesToDisplay.js
 var require_entriesToDisplay2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/entriesToDisplay.js"(exports, module2) {
+  "node_modules/prompts/lib/util/entriesToDisplay.js"(exports, module2) {
     "use strict";
     module2.exports = (cursor, total, maxVisible) => {
       maxVisible = maxVisible || total;
@@ -4991,9 +4991,9 @@ var require_entriesToDisplay2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/index.js
+// node_modules/prompts/lib/util/index.js
 var require_util2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/index.js"(exports, module2) {
+  "node_modules/prompts/lib/util/index.js"(exports, module2) {
     "use strict";
     module2.exports = {
       action: require_action2(),
@@ -5008,9 +5008,9 @@ var require_util2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/prompt.js
+// node_modules/prompts/lib/elements/prompt.js
 var require_prompt2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/prompt.js"(exports, module2) {
+  "node_modules/prompts/lib/elements/prompt.js"(exports, module2) {
     "use strict";
     var readline = require("readline");
     var { action } = require_util2();
@@ -5070,9 +5070,9 @@ var require_prompt2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/text.js
+// node_modules/prompts/lib/elements/text.js
 var require_text2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/text.js"(exports, module2) {
+  "node_modules/prompts/lib/elements/text.js"(exports, module2) {
     var color = require_kleur();
     var Prompt = require_prompt2();
     var { erase, cursor } = require_src();
@@ -5257,9 +5257,9 @@ ${i ? " " : figures.pointerSmall} ${color.red().italic(l)}`, ``);
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/select.js
+// node_modules/prompts/lib/elements/select.js
 var require_select2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/select.js"(exports, module2) {
+  "node_modules/prompts/lib/elements/select.js"(exports, module2) {
     "use strict";
     var color = require_kleur();
     var Prompt = require_prompt2();
@@ -5404,9 +5404,9 @@ var require_select2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/toggle.js
+// node_modules/prompts/lib/elements/toggle.js
 var require_toggle2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/toggle.js"(exports, module2) {
+  "node_modules/prompts/lib/elements/toggle.js"(exports, module2) {
     var color = require_kleur();
     var Prompt = require_prompt2();
     var { style, clear } = require_util2();
@@ -5510,9 +5510,9 @@ var require_toggle2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/datepart.js
+// node_modules/prompts/lib/dateparts/datepart.js
 var require_datepart2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/datepart.js"(exports, module2) {
+  "node_modules/prompts/lib/dateparts/datepart.js"(exports, module2) {
     "use strict";
     var DatePart = class {
       constructor({ token, date, parts, locales }) {
@@ -5544,9 +5544,9 @@ var require_datepart2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/meridiem.js
+// node_modules/prompts/lib/dateparts/meridiem.js
 var require_meridiem2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/meridiem.js"(exports, module2) {
+  "node_modules/prompts/lib/dateparts/meridiem.js"(exports, module2) {
     "use strict";
     var DatePart = require_datepart2();
     var Meridiem = class extends DatePart {
@@ -5568,9 +5568,9 @@ var require_meridiem2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/day.js
+// node_modules/prompts/lib/dateparts/day.js
 var require_day2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/day.js"(exports, module2) {
+  "node_modules/prompts/lib/dateparts/day.js"(exports, module2) {
     "use strict";
     var DatePart = require_datepart2();
     var pos = (n) => {
@@ -5600,9 +5600,9 @@ var require_day2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/hours.js
+// node_modules/prompts/lib/dateparts/hours.js
 var require_hours2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/hours.js"(exports, module2) {
+  "node_modules/prompts/lib/dateparts/hours.js"(exports, module2) {
     "use strict";
     var DatePart = require_datepart2();
     var Hours = class extends DatePart {
@@ -5629,9 +5629,9 @@ var require_hours2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/milliseconds.js
+// node_modules/prompts/lib/dateparts/milliseconds.js
 var require_milliseconds2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/milliseconds.js"(exports, module2) {
+  "node_modules/prompts/lib/dateparts/milliseconds.js"(exports, module2) {
     "use strict";
     var DatePart = require_datepart2();
     var Milliseconds = class extends DatePart {
@@ -5655,9 +5655,9 @@ var require_milliseconds2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/minutes.js
+// node_modules/prompts/lib/dateparts/minutes.js
 var require_minutes2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/minutes.js"(exports, module2) {
+  "node_modules/prompts/lib/dateparts/minutes.js"(exports, module2) {
     "use strict";
     var DatePart = require_datepart2();
     var Minutes = class extends DatePart {
@@ -5682,9 +5682,9 @@ var require_minutes2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/month.js
+// node_modules/prompts/lib/dateparts/month.js
 var require_month2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/month.js"(exports, module2) {
+  "node_modules/prompts/lib/dateparts/month.js"(exports, module2) {
     "use strict";
     var DatePart = require_datepart2();
     var Month = class extends DatePart {
@@ -5711,9 +5711,9 @@ var require_month2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/seconds.js
+// node_modules/prompts/lib/dateparts/seconds.js
 var require_seconds2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/seconds.js"(exports, module2) {
+  "node_modules/prompts/lib/dateparts/seconds.js"(exports, module2) {
     "use strict";
     var DatePart = require_datepart2();
     var Seconds = class extends DatePart {
@@ -5738,9 +5738,9 @@ var require_seconds2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/year.js
+// node_modules/prompts/lib/dateparts/year.js
 var require_year2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/year.js"(exports, module2) {
+  "node_modules/prompts/lib/dateparts/year.js"(exports, module2) {
     "use strict";
     var DatePart = require_datepart2();
     var Year = class extends DatePart {
@@ -5765,9 +5765,9 @@ var require_year2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/index.js
+// node_modules/prompts/lib/dateparts/index.js
 var require_dateparts2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/dateparts/index.js"(exports, module2) {
+  "node_modules/prompts/lib/dateparts/index.js"(exports, module2) {
     "use strict";
     module2.exports = {
       DatePart: require_datepart2(),
@@ -5783,9 +5783,9 @@ var require_dateparts2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/date.js
+// node_modules/prompts/lib/elements/date.js
 var require_date2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/date.js"(exports, module2) {
+  "node_modules/prompts/lib/elements/date.js"(exports, module2) {
     "use strict";
     var color = require_kleur();
     var Prompt = require_prompt2();
@@ -5961,9 +5961,9 @@ ${i ? ` ` : figures.pointerSmall} ${color.red().italic(l)}`,
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/number.js
+// node_modules/prompts/lib/elements/number.js
 var require_number2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/number.js"(exports, module2) {
+  "node_modules/prompts/lib/elements/number.js"(exports, module2) {
     var color = require_kleur();
     var Prompt = require_prompt2();
     var { cursor, erase } = require_src();
@@ -6149,9 +6149,9 @@ ${i ? ` ` : figures.pointerSmall} ${color.red().italic(l)}`, ``);
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/multiselect.js
+// node_modules/prompts/lib/elements/multiselect.js
 var require_multiselect2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/multiselect.js"(exports, module2) {
+  "node_modules/prompts/lib/elements/multiselect.js"(exports, module2) {
     "use strict";
     var color = require_kleur();
     var { cursor } = require_src();
@@ -6375,9 +6375,9 @@ Instructions:
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/autocomplete.js
+// node_modules/prompts/lib/elements/autocomplete.js
 var require_autocomplete2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/autocomplete.js"(exports, module2) {
+  "node_modules/prompts/lib/elements/autocomplete.js"(exports, module2) {
     "use strict";
     var color = require_kleur();
     var Prompt = require_prompt2();
@@ -6601,9 +6601,9 @@ var require_autocomplete2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/autocompleteMultiselect.js
+// node_modules/prompts/lib/elements/autocompleteMultiselect.js
 var require_autocompleteMultiselect2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/autocompleteMultiselect.js"(exports, module2) {
+  "node_modules/prompts/lib/elements/autocompleteMultiselect.js"(exports, module2) {
     "use strict";
     var color = require_kleur();
     var { cursor } = require_src();
@@ -6766,9 +6766,9 @@ Filtered results for: ${this.inputValue ? this.inputValue : color.gray("Enter so
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/confirm.js
+// node_modules/prompts/lib/elements/confirm.js
 var require_confirm2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/confirm.js"(exports, module2) {
+  "node_modules/prompts/lib/elements/confirm.js"(exports, module2) {
     var color = require_kleur();
     var Prompt = require_prompt2();
     var { style, clear } = require_util2();
@@ -6841,9 +6841,9 @@ var require_confirm2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/index.js
+// node_modules/prompts/lib/elements/index.js
 var require_elements2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/index.js"(exports, module2) {
+  "node_modules/prompts/lib/elements/index.js"(exports, module2) {
     "use strict";
     module2.exports = {
       TextPrompt: require_text2(),
@@ -6859,9 +6859,9 @@ var require_elements2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/prompts.js
+// node_modules/prompts/lib/prompts.js
 var require_prompts2 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/prompts.js"(exports) {
+  "node_modules/prompts/lib/prompts.js"(exports) {
     "use strict";
     var $ = exports;
     var el = require_elements2();
@@ -6925,9 +6925,9 @@ var require_prompts2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/index.js
+// node_modules/prompts/lib/index.js
 var require_lib = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/index.js"(exports, module2) {
+  "node_modules/prompts/lib/index.js"(exports, module2) {
     "use strict";
     var prompts2 = require_prompts2();
     var passOn = ["suggest", "format", "onState", "validate", "onRender", "type"];
@@ -7002,9 +7002,9 @@ var require_lib = __commonJS({
   }
 });
 
-// node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/index.js
+// node_modules/prompts/index.js
 var require_prompts3 = __commonJS({
-  "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/index.js"(exports, module2) {
+  "node_modules/prompts/index.js"(exports, module2) {
     function isNodeLT(tar) {
       tar = (Array.isArray(tar) ? tar : tar.split(".")).map(Number);
       let i = 0, src = process.versions.node.split(".").map(Number);
@@ -7020,7 +7020,7 @@ var require_prompts3 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/commander@9.4.0/node_modules/commander/esm.mjs
+// node_modules/commander/esm.mjs
 var import_index = __toESM(require_commander(), 1);
 var {
   program,
@@ -7037,11 +7037,13 @@ var {
 } = import_index.default;
 
 // lib/core/actions.ts
+var import_fs2 = __toESM(require("fs"), 1);
 var import_minimist = __toESM(require_minimist(), 1);
+var import_path2 = __toESM(require("path"), 1);
 
 // lib/utils/init.ts
 var import_prompts = __toESM(require_prompts3(), 1);
-var init = async () => {
+var init = async (targetDir) => {
   try {
     return await (0, import_prompts.default)([
       {
@@ -7089,11 +7091,127 @@ var init = async () => {
   }
 };
 
+// lib/utils/renderTemplate.ts
+var import_fs = __toESM(require("fs"), 1);
+var import_path = __toESM(require("path"), 1);
+
+// lib/utils/deepMerge.ts
+var isObject = (val) => val && typeof val === "object";
+var mergeArrayWithDedupe = (a, b) => Array.from(/* @__PURE__ */ new Set([...a, ...b]));
+function deepMerge(target, obj) {
+  for (const key of Object.keys(obj)) {
+    const oldVal = target[key];
+    const newVal = obj[key];
+    if (Array.isArray(oldVal) && Array.isArray(newVal)) {
+      target[key] = mergeArrayWithDedupe(oldVal, newVal);
+    } else if (isObject(oldVal) && isObject(newVal)) {
+      target[key] = deepMerge(oldVal, newVal);
+    } else {
+      target[key] = newVal;
+    }
+  }
+  return target;
+}
+var deepMerge_default = deepMerge;
+
+// lib/utils/sortDependencies.ts
+function sortDependencies(packageJson) {
+  const sorted = {};
+  const depTypes = [
+    "dependencies",
+    "devDependencies",
+    "peerDependencies",
+    "optionalDependencies"
+  ];
+  for (const depType of depTypes) {
+    if (packageJson[depType]) {
+      sorted[depType] = {};
+      Object.keys(packageJson[depType]).sort().forEach((name) => {
+        sorted[depType][name] = packageJson[depType][name];
+      });
+    }
+  }
+  return {
+    ...packageJson,
+    ...sorted
+  };
+}
+
+// lib/utils/renderTemplate.ts
+function renderTemplate(src, dest) {
+  const stats = import_fs.default.statSync(src);
+  if (stats.isDirectory()) {
+    if (import_path.default.basename(src) === "node_modules") {
+      return;
+    }
+    import_fs.default.mkdirSync(dest, { recursive: true });
+    for (const file of import_fs.default.readdirSync(src)) {
+      renderTemplate(import_path.default.resolve(src, file), import_path.default.resolve(dest, file));
+    }
+    return;
+  }
+  const filename = import_path.default.basename(src);
+  if (filename === "package.json" && import_fs.default.existsSync(dest)) {
+    const existing = JSON.parse(import_fs.default.readFileSync(dest, "utf8"));
+    const newPackage = JSON.parse(import_fs.default.readFileSync(src, "utf8"));
+    const pkg = sortDependencies(deepMerge_default(existing, newPackage));
+    import_fs.default.writeFileSync(dest, JSON.stringify(pkg, null, 2) + "\n");
+    return;
+  }
+  if (filename.startsWith("_")) {
+    dest = import_path.default.resolve(import_path.default.dirname(dest), filename.replace(/^_/, "."));
+  }
+  import_fs.default.copyFileSync(src, dest);
+}
+
 // lib/core/actions.ts
 var createProjectAction = async () => {
+  const cwd = process.cwd();
   const argv = (0, import_minimist.default)(process.argv.slice(2));
-  const result = await init();
-  console.log(argv);
+  let targetDir = argv._[0];
+  const result = await init(targetDir);
+  const {
+    projectName,
+    packageName = projectName,
+    needsJsx = argv.jsx,
+    needsTypeScript = argv.typescript,
+    needsRouter = argv.router,
+    needsPinia = argv.pinia
+  } = result;
+  if (projectName) {
+    targetDir = projectName;
+  }
+  const root = import_path2.default.join(cwd, targetDir);
+  if (import_fs2.default.existsSync(root)) {
+    console.log(
+      "Duplicate directory, launch CLI, please select red to choose a name"
+    );
+    process.exit(1);
+  } else if (!import_fs2.default.existsSync(root)) {
+    import_fs2.default.mkdirSync(root);
+  }
+  const pkg = { name: packageName, version: "0.0.0" };
+  import_fs2.default.writeFileSync(
+    import_path2.default.resolve(root, "package.json"),
+    JSON.stringify(pkg, null, 2)
+  );
+  const templateRoot = import_path2.default.resolve(__dirname, "template");
+  function render(templateName) {
+    const templateDir = import_path2.default.resolve(templateRoot, templateName);
+    renderTemplate(templateDir, root);
+  }
+  if (needsTypeScript) {
+    render("config/ts");
+  }
+  if (needsJsx) {
+    render("config/jsx");
+  }
+  if (needsRouter) {
+    render("config/router");
+  }
+  if (needsPinia) {
+    render("config/pinia");
+  }
 };
 
 // lib/core/create.ts
@@ -7114,9 +7232,9 @@ var package_default = {
   version: "1.0.0",
   description: "CLI of mint",
   type: "module",
-  main: "dist/mt.cjs",
+  main: "mt.cjs",
   bin: {
-    mt: "dist/mt.cjs"
+    mt: "mt.cjs"
   },
   engines: {
     node: "^14.18.0 || >=16.0.0"

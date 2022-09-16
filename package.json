@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "CLI of mint",
   "type": "module",
-  "main": "dist/mt.cjs",
+  "main": "mt.cjs",
   "bin": {
-    "mt": "dist/mt.cjs"
+    "mt": "mt.cjs"
   },
   "engines": {
     "node": "^14.18.0 || >=16.0.0"
