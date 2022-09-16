@@ -1,0 +1,40 @@
+{
+  "name": "mint-cli",
+  "version": "1.0.0",
+  "description": "CLI of mint",
+  "type": "module",
+  "main": "dist/mt.cjs",
+  "bin": {
+    "mt": "dist/mt.cjs"
+  },
+  "engines": {
+    "node": "^14.18.0 || >=16.0.0"
+  },
+  "scripts": {
+    "build": "node script/build.js"
+  },
+  "keywords": [
+    "CLI",
+    "cli",
+    "vue",
+    "react",
+    "jsx",
+    "pinia",
+    "vuex",
+    "vue-router",
+    "mint"
+  ],
+  "author": "ssj",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^9.4.0",
+    "minimist": "^1.2.6",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.18",
+    "@vue/tsconfig": "^0.1.3",
+    "esbuild": "^0.15.7",
+    "typescript": "^4.7.4"
+  }
+}

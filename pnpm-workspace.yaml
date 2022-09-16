@@ -1,0 +1,6 @@
+packages:
+  - "playground/**"
+  - "template/base"
+  - "template/config/**"
+  - "template/tsconfig/**"
+#monorepo包管理方式 https://juejin.cn/post/7053807488952434719
