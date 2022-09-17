@@ -1,4 +1,4 @@
-#! /usr/bin/env node
+#! /usr/bin/env zx
 
 import { program } from "commander";
 import { createCommand } from "./lib/core/create";
