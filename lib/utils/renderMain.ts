@@ -8,14 +8,12 @@ export const renderMain = (
 ) => {
   const template = `
         import { createApp } from 'vue'
-        ${pinia ? "import { setupStore } from '/@/store'" : ""}  
+        ${pinia ? "import { setupStore } from '@/store'" : ""}  
         import App from './App.vue'
         ${router ? "import router from './router'" : ""}  
         const app = createApp(App)
-        
-        
         function bootStrop() {
-            ${router ? "app.use(createPinia())" : ""}  
+            ${router ? "app.use(router)" : ""}  
             ${pinia ? "setupStore(app);" : ""}  
             app.mount("#app");
           }
@@ -23,5 +21,5 @@ export const renderMain = (
     `;
   const name = ts ? "main.ts" : "main.js";
   const path = `${root}/src/${name}`;
-  fs.writeFileSync(path, JSON.stringify(template, null, 2) + "\n");
+  fs.writeFileSync(path, template);
 };

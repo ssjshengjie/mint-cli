@@ -1,11 +1,11 @@
 import fs from "fs";
 import minimist from "minimist";
 import path from "path";
-import { init } from "../utils/init";
-import { renderMain } from "../utils/renderMain";
-import { renderTemplate } from "../utils/renderTemplate";
+import { init } from "../../utils/init";
+import { renderMain } from "../../utils/renderMain";
+import { renderTemplate } from "../../utils/renderTemplate";
 import { red, green, bold } from "kolorist";
-import getCommand from "../utils/getCommand";
+import getCommand from "../../utils/getCommand";
 export const createProjectAction = async () => {
   const cwd = process.cwd();
   const argv = minimist(process.argv.slice(2));
