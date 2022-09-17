@@ -1,11 +1,17 @@
 import fs from "fs";
+import { bold, green } from "kolorist";
 import minimist from "minimist";
 import path from "path";
+import getCommand from "../../utils/getCommand";
 import { init } from "../../utils/init";
 import { renderMain } from "../../utils/renderMain";
-import { renderTemplate } from "../../utils/renderTemplate";
-import { red, green, bold } from "kolorist";
-import getCommand from "../../utils/getCommand";
+import { transformTs } from "../../utils/transfrom";
+import {
+  writeCode,
+  writeConfig,
+  writePCK,
+  writeVscode,
+} from "../../utils/write";
 export const createProjectAction = async () => {
   const cwd = process.cwd();
   const argv = minimist(process.argv.slice(2));
@@ -20,15 +26,14 @@ export const createProjectAction = async () => {
   const {
     projectName,
     packageName = projectName,
-    needsJsx = argv.jsx,
-    needsTypeScript = argv.typescript,
-    needsRouter = argv.router,
-    needsPinia = argv.pinia,
+    needsTypeScript,
+    needsRouter,
+    needsPinia,
   } = result;
   if (projectName) {
     targetDir = projectName;
   }
-  // root path
+  // root path  => C:\\Users\\xxx\\Desktop\\mint-cli\\project
   const root = path.join(cwd, targetDir);
   //Check if this file exists
   if (fs.existsSync(root)) {
@@ -37,61 +42,29 @@ export const createProjectAction = async () => {
     );
     process.exit(1);
   } else if (!fs.existsSync(root)) {
-    // create directory with root = projectName
+    // create directory with root => projectName  you/directory/project
     fs.mkdirSync(root);
   }
-  const pkg = { name: packageName, version: "0.0.0" };
-  //create package.json content name version
-  fs.writeFileSync(
-    path.resolve(root, "package.json"),
-    JSON.stringify(pkg, null, 2)
-  );
-  // render a config to  pakeage.json devDependcies
-  const templateRoot = path.resolve(__dirname, "template");
-  // render function
-  function render(templateName) {
-    const templateDir = path.resolve(templateRoot, templateName);
-    renderTemplate(templateDir, root);
-  }
-  // default package config
-  render("config/default");
-  //default vscode idea json setting
-  render("vscode");
-  // render ts
-  if (needsTypeScript) {
-    render("config/ts");
-  }
-  // render jsx config
-  if (needsJsx) {
-    needsTypeScript ? render("config/tsx") : render("config/jsx");
-  }
-  // render router config
-  if (needsRouter) {
-    render("config/router");
-    needsTypeScript ? render("code/ts-router") : render("code/router");
-  }
-  //render pinia config
-  if (needsPinia) {
-    render("config/pinia");
-    needsTypeScript ? render("code/ts-pinia") : render("code/pinia");
-  }
-  //render vue-reouer
-  const codeTemplate =
-    (needsTypeScript ? "ts-" : "") + (needsRouter ? "router" : "default");
-  render(`code/${codeTemplate}`);
-  //render project scr
-  const codePublic = needsTypeScript ? "ts-default" : "default";
-  render(`code/${codePublic}`);
-  //render src main.ts or main.js
+  //write package.json
+  writePCK(root, packageName);
+  // write package.json devDependencies dependencies
+  writeConfig(result, root);
+  //write code template
+  writeCode(result, root);
+  //write vscode setting
+  writeVscode(root);
+  // //render src main.ts or main.js
   renderMain(needsTypeScript, needsRouter, needsPinia, root);
+  //If the project is ts, change all file names ending in js to ts
+  if (needsTypeScript) {
+    transformTs(root);
+  }
+  //=== end
   console.log(`\nDone. Now run:\n`);
   if (root !== cwd) {
     console.log(`  ${bold(green(`cd ${path.relative(cwd, root)}`))}`);
   }
   console.log(`  ${bold(green(getCommand(packageManager, "install")))}`);
-  // if (needsPrettier) {
-  //   console.log(`  ${bold(green(getCommand(packageManager, "lint")))}`);
-  // }
   console.log(`  ${bold(green(getCommand(packageManager, "dev")))}`);
   console.log();
 };

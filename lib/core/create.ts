@@ -1,6 +1,6 @@
 import { program } from "commander";
-import { createProjectAction } from "./actions";
 import banner from "../utils/clg";
+import { createProjectAction } from "./actions";
 export const createCommand = () => {
   program
     .command("create")
