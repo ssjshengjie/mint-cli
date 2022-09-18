@@ -1,6 +1,6 @@
 {
   "name": "minto-cli",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "CLI of mint",
   "type": "module",
   "main": "mt.cjs",
@@ -8,13 +8,14 @@
     "mt": "mt.cjs"
   },
   "files": [
-    "mt.cjs"
+    "mt.cjs",
+    "template"
   ],
   "engines": {
     "node": "^14.18.0 || >=16.0.0"
   },
   "scripts": {
-    "build": "zx ./script/build.mjs"
+    "build": "node ./script/build.js"
   },
   "keywords": [
     "CLI",

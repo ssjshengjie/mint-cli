@@ -16,7 +16,7 @@ export const createProjectAction = async () => {
   const cwd = process.cwd();
   const argv = minimist(process.argv.slice(2));
   let targetDir = argv._[0];
-  const result = await init(targetDir);
+  const result = await init();
   const userAgent = process.env.npm_config_user_agent ?? "";
   const packageManager = /pnpm/.test(userAgent)
     ? "pnpm"
