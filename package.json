@@ -1,5 +1,5 @@
 {
-  "name": "mint-cli",
+  "name": "minto-cli",
   "version": "1.0.0",
   "description": "CLI of mint",
   "type": "module",
@@ -8,8 +8,7 @@
     "mt": "mt.cjs"
   },
   "files": [
-    "mt.cjs",
-    "template"
+    "mt.cjs"
   ],
   "engines": {
     "node": "^14.18.0 || >=16.0.0"
