@@ -1,7 +1,7 @@
 {
   "name": "minto-cli",
-  "version": "1.0.5",
-  "description": "CLI of mint",
+  "version": "1.0.6",
+  "description": "CLI of minto",
   "type": "module",
   "main": "mt.cjs",
   "bin": {
@@ -21,12 +21,11 @@
     "CLI",
     "cli",
     "vue",
-    "react",
     "jsx",
     "pinia",
     "vuex",
     "vue-router",
-    "mint"
+    "minto"
   ],
   "repository": {
     "type": "git",
@@ -37,7 +36,7 @@
     "url": "https://github.com/ssjshengjie/mint-cli/issues"
   },
   "homepage": "https://github.com/ssjshengjie/mint-cli#readme",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "commander": "^9.4.0",
     "gradient-string": "^2.0.2",
